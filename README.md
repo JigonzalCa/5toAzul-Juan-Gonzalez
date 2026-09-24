@@ -1,2 +1,4 @@
-# 5toAzul-Juan-Gonz-lez
-Pensamiento Computacional 
+# Repositorio de Juan González Cardesín
+**Este repositorio le pertenece al alumno Juan González Cardesín
+De 5to año azul de U.E.P. Colegio Jefferson. En este repositorio
+Veras los proyectos y actividades que se realizaran en el primer Lapso**
