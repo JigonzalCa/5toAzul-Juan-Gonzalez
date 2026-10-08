@@ -99,4 +99,6 @@ void loop() {
     digitalWrite(ledVerde, LOW);
   }
 }
+Actividad desenchufada:
+<img width="865" height="1242" alt="IMG_3134" src="https://github.com/user-attachments/assets/50247c34-83a7-41bb-b894-66a598493e34" />
 
