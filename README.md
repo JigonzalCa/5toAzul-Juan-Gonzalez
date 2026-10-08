@@ -6,7 +6,7 @@ Cuenta de tinkercard: juanig09
 Pensamiento Computacional
 Clase del 24/09 creación del GitHub.
 
-Clase del 1/10, actividad 1.
+**Clase del 1/10, actividad 1.**
 
 En esta actividad vimos una tabla y respondimos los siguientes ejercicios 
 <img width="608" height="508" alt="IMG_3097" src="https://github.com/user-attachments/assets/9e749904-083b-4d52-9eae-b0a239144546" />
@@ -22,3 +22,81 @@ Actividad:
   La siguiente hoja tendrá las respuestas
 <img width="3024" height="4032" alt="IMG_3095" src="https://github.com/user-attachments/assets/24c46b79-5f6f-4268-a5f5-92a566cdb459" />
 <img width="3024" height="4032" alt="IMG_3096" src="https://github.com/user-attachments/assets/e03e1428-f23b-446b-9ded-2fd2f694c40f" />
+**Actividad#2, clase de 8/10**
+
+En esta clase hicimos dos ejercicios, un circuito, y otro ejercicio de calculo.
+
+Ejercicio de circuito: 
+
+<img width="1843" height="1307" alt="IMG_3128" src="https://github.com/user-attachments/assets/59f142a9-0727-48ba-835b-03f8cafdf53e" />
+
+Link al circuito: https://www.tinkercad.com/things/ifSqxTSkzpZ-swanky-kasi/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=_Hs1MfK65OGmmK2iutbWZBcVA8JBGEb2T6z4RiywKOo
+
+Código:
+// ----- Parte 1: 6 LEDs con pulsador -----
+const int boton = 11;
+const int leds[] = {2, 3, 4, 5, 6, 9};
+const int numLeds = 6;
+const unsigned long intervaloLeds = 8000; // 8 segundos
+
+bool activado = false;
+bool estadoLeds = LOW;
+unsigned long ultimoCambioLeds = 0;
+
+// ----- Parte 2: 2 LEDs con interruptor -----
+const int interruptor = 12;
+const int ledAzul = 10;
+const int ledVerde = 13;
+const unsigned long tiempoAlternar = 500; // medio segundo
+
+bool turnoAzul = false;
+unsigned long ultimoCambioAlternar = 0;
+
+void setup() {
+  pinMode(boton, INPUT_PULLUP);
+  pinMode(interruptor, INPUT_PULLUP);
+  for (int i = 0; i < numLeds; i++) {
+    pinMode(leds[i], OUTPUT);
+    digitalWrite(leds[i], LOW);
+  }
+  pinMode(ledAzul, OUTPUT);
+  pinMode(ledVerde, OUTPUT);
+}
+
+void ponerLeds(bool estado) {
+  for (int i = 0; i < numLeds; i++) {
+    digitalWrite(leds[i], estado);
+  }
+}
+
+void loop() {
+  unsigned long ahora = millis();
+
+  // ----- Parte 1 -----
+  if (!activado) {
+    if (digitalRead(boton) == LOW) {
+      activado = true;
+      estadoLeds = HIGH;
+      ponerLeds(estadoLeds);
+      ultimoCambioLeds = ahora;
+    }
+  } else if (ahora - ultimoCambioLeds >= intervaloLeds) {
+    estadoLeds = !estadoLeds;
+    ponerLeds(estadoLeds);
+    ultimoCambioLeds = ahora;
+  }
+
+  // ----- Parte 2 -----
+  if (digitalRead(interruptor) == LOW) {
+    if (ahora - ultimoCambioAlternar >= tiempoAlternar) {
+      turnoAzul = !turnoAzul;
+      digitalWrite(ledAzul, turnoAzul);
+      digitalWrite(ledVerde, !turnoAzul);
+      ultimoCambioAlternar = ahora;
+    }
+  } else {
+    digitalWrite(ledAzul, LOW);
+    digitalWrite(ledVerde, LOW);
+  }
+}
+
