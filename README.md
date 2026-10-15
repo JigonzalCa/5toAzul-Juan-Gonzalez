@@ -102,3 +102,44 @@ void loop() {
 Actividad desenchufada:
 <img width="865" height="1242" alt="IMG_3134" src="https://github.com/user-attachments/assets/50247c34-83a7-41bb-b894-66a598493e34" />
 
+**Actividad#3, 15/10**
+En esta actividad que consiste en crear un producto para solucionar un problema, yo y Samuel Gil realizamos el siguiente circuito. 
+
+Problema principal: Llamada de turnos en una cola. 
+El problema es que en lugares con mucha cola como en una panadería o una farmacia, mucha gente no sabe cuando lo llaman, en que turno le tocan, mucha gente se colea con intención o sin intención, y que el encargado tenga que gritar sus nombres. Esto genera problemas como mucho desorden y caos.
+
+La solución a esto es el siguiente dispositivo que va ayudar a mantener el orden, va ayudar a que la gente  sepa cual es su turno en la cola, va ahorrar malentendidos, y no hay interrupciones.
+
+El funcionamiento del dispositivo es que el encargado presiona un botón al terminar con un cliente. El sistema suma un turno, lo muestra en el monitor serial ("Turno 5, pase por favor") y hace parpadear un LED para llamar la atención.
+
+ El código del programa es: 
+
+const int boton = 2;
+const int led = 13;
+int turno = 0;
+
+void setup() {
+  pinMode(boton, INPUT_PULLUP);
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Sistema de turnos listo");
+}
+
+void loop() {
+  if (digitalRead(boton) == LOW) {      // entrada: botón presionado
+    turno++;                            // proceso: siguiente turno
+    Serial.print("Turno ");
+    Serial.print(turno);
+    Serial.println(", pase por favor");
+    for (int i = 0; i < 3; i++) {       // respuesta: LED parpadea
+      digitalWrite(led, HIGH);
+      delay(200);
+      digitalWrite(led, LOW);
+      delay(200);
+    }
+    while (digitalRead(boton) == LOW);  // espera a que suelten el botón
+  }
+}
+
+<img width="1459" height="988" alt="IMG_3154" src="https://github.com/user-attachments/assets/b457aced-a8f3-4275-891b-ed3b03c21e55" />
+<img width="2360" height="1640" alt="IMG_3156" src="https://github.com/user-attachments/assets/61da1c1f-ff39-4d35-921c-feb6890a4223" />
