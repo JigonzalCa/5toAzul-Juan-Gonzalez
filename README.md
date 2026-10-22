@@ -145,6 +145,8 @@ void loop() {
 <img width="2360" height="1640" alt="IMG_3156" src="https://github.com/user-attachments/assets/61da1c1f-ff39-4d35-921c-feb6890a4223" />
 
 **Actividad del 22/10**
+Puedes ver el PDF para ver completo todo
+
 
 ---
 
