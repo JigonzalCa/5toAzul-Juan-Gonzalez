@@ -103,6 +103,9 @@ Actividad desenchufada:
 <img width="865" height="1242" alt="IMG_3134" src="https://github.com/user-attachments/assets/50247c34-83a7-41bb-b894-66a598493e34" />
 
 **Actividad#3, 15/10**
+
+El link del circuito es  https://www.tinkercad.com/things/3dJht8wvH7m-exquisite-hango-tumelo/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=7Kh-AW25yAqbSHBZRszd7RcoaP6D0GY_i698ufVAUWs
+
 En esta actividad que consiste en crear un producto para solucionar un problema, yo y Samuel Gil realizamos el siguiente circuito. 
 
 Problema principal: Llamada de turnos en una cola. 
