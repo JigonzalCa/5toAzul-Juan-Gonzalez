@@ -561,4 +561,5 @@ void loop() {
   servo3.write(angulo3);
 }
 
-
+**Fotos**
+<img width="1754" height="1058" alt="IMG_3209" src="https://github.com/user-attachments/assets/b97cea12-96a8-41ab-95e6-1e27e0191124" />
