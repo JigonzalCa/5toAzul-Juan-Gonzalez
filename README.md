@@ -668,3 +668,34 @@ La guía incluye varios ejemplos:
 - **Con el PCA9685:** se configura la frecuencia a 50 Hz y se usan las funciones `setChannelPWM()` y `pwmForAngle()` para llevar cada canal al ángulo deseado. Como cada servo responde un poco distinto, se calibra individualmente, incluso ajustando su punto de 90°.
 
 Las aplicaciones mencionadas incluyen brazos robóticos, robots hexápodos, robots SCARA y modelos RC.
+
+**Actividad 5/11**
+*Para ver la información clara consulta en PDF en la carpeta de la Actividad 5/11*
+Actividad del 5/11
+Ejercicio 1. En la secuencia A, cada número es el doble del anterior, así que el que sigue es 96. En la secuencia B, los números son los cuadrados perfectos (1², 2², 3², 4², 5²), por lo que el siguiente es 6², es decir, 36. En la secuencia C, cada figura tiene un triángulo más que la anterior, así que la que sigue es ▲▲▲▲▲. En la secuencia D, cada número se obtiene multiplicando el anterior por 2 y sumándole 1; por eso el siguiente es 47 × 2 + 1 = 95.
+
+Ejercicio 2. Los elementos importantes del plano son los que afectan el recorrido del robot. En primer lugar, la puerta, ubicada en la esquina superior derecha del salón, y el escritorio del docente, ubicado en el medio de la parte superior, que son el punto de partida y el de llegada. En segundo lugar, los obstáculos que podrían cruzarse en el camino: los pupitres, las sillas, los bolsos, los termos y las loncheras, sobre todo cuando quedan en el piso. También importa el espacio libre al frente del salón, porque es por donde el robot puede avanzar.
+En cambio, se pueden ignorar el color de las paredes, los carteles, lo escrito en la pizarra, las lámparas del techo y el reloj. Nada de eso está en el piso, así que no estorba el paso del robot.
+
+En el plano simplificado, el robot entra por la puerta (P), en la esquina superior derecha, y avanza hacia la izquierda por el espacio libre del frente hasta llegar al escritorio del docente (D). Los pupitres, las sillas, los bolsos, los termos y las loncheras (X) quedan en las filas de abajo y no se cruzan en su camino, siempre que nadie deje objetos en el piso del frente. La línea entre P y D representa el espacio libre por donde avanza el robot:
+
+```text
+          D ─────────── P
+   X  │  X  │  X  │  X
+   X  │  X  │  X  │  X
+   X  │  X  │  X  │  X
+```
+
+**Leyenda:** P = puerta · D = escritorio del docente · X = obstáculo (pupitres, sillas, bolsos, termos, loncheras) · líneas = espacio libre para avanzar
+
+
+Ejercicio 3. El primer error está en el paso 4, "subir las escaleras", porque la biblioteca no queda en el segundo piso. Ese paso se reemplaza por "girar a la izquierda cuando veas la enfermería". El segundo error está en el paso 6, "entrar al laboratorio de química", porque el destino es la biblioteca. Ese paso se reemplaza por "entrar a la biblioteca".
+
+El algoritmo corregido queda así: primero, salir del salón; luego, girar a la izquierda; después, avanzar hasta el final del pasillo; a continuación, girar a la izquierda cuando veas la enfermería; luego, girar a la derecha; después, entrar a la biblioteca; y finalmente, detenerse.
+
+Ejercicio 4.
+1. Abstracción. Para resolver el problema no hace falta anotar cada ruta completa. En cada casilla basta saber cuánta energía se lleva acumulada y qué resto deja esa suma al dividirla entre 5. Cada estado del problema es una casilla junto con ese resto. En cada estado solo se guarda la suma más grande que se logró y la casilla de la que se vino.
+2. Diseño del algoritmo. Empezamos en la casilla inicial (1,1) con su energía, que es 2. Luego avanzamos por la cuadrícula fila por fila, de izquierda a derecha, comprobando varias posibilidades con la calculadora. En cada casilla sumábamos su energía a lo que traía el camino desde la casilla de arriba o desde la de la izquierda. Si dos caminos llegaban a la misma casilla con el mismo resto, nos quedábamos con el de mayor suma. Al llegar a la casilla final (5,5), buscamos la suma más grande que fuera múltiplo de 5. Después volvimos hacia atrás por las casillas guardadas para reconstruir la ruta.
+3. Aplicación. La ruta es (1,1) → (1,2) → (2,2) → (2,3) → (3,3) → (3,4) → (3,5) → (4,5) → (5,5). Con flechas queda así: → ↓ → ↓ → → ↓ ↓. Las energías de esas casillas son 2, 7, 4, 9, 3, 7, 4, 8 y 6, y la suma total es 50. Sí es múltiplo de 5, porque 50 entre 5 da 10 exacto.
+4. Justificación. Sabemos que esta ruta es la de mayor suma porque, además de comprobar varias posibilidades con la calculadora, el método no deja ningún camino por fuera. A cada casilla solo se puede llegar desde arriba o desde la izquierda, y en ambos casos revisamos las opciones. Cuando dos caminos llegaban a la misma casilla con el mismo resto, descartar el de menor suma no hacía perder nada. De ahí en adelante, a los dos se les sumarían las mismas casillas, así que el de menor suma nunca podría terminar ganando. Además, 50 resultó ser la mayor suma posible entre todas las rutas de la cuadrícula, aun sin la condición. Por eso ninguna otra ruta puede superarla.
+5. Extensión matemática. Si la condición cambiara a "múltiplo de 3", la ruta óptima no sería la misma. La suma de 50 no es múltiplo de 3, así que esta ruta ya no cumpliría la condición. Al cambiar la condición, cambian las rutas que son válidas, y la mejor tiene que buscarse de nuevo con el mismo procedimiento, pero revisando el resto al dividir entre 3. Haciéndolo así, la mejor suma pasa a ser 48, con la ruta ↓ → ↓ → → → ↓ ↓.
