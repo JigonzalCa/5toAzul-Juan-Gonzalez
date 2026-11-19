@@ -829,3 +829,6 @@ void loop() {
 
  estadoAnterior = lectura;
 }
+
+Este es el circuito en físico <img width="4032" height="3024" alt="IMG_3268" src="https://github.com/user-attachments/assets/26f863d6-943c-4c87-984b-b7a3b3e6f781" />
+<img width="4032" height="3024" alt="IMG_3269" src="https://github.com/user-attachments/assets/e79fdfde-ed16-45ec-b4d2-93750b272df1" />
