@@ -699,3 +699,11 @@ Ejercicio 4.
 3. Aplicación. La ruta es (1,1) → (1,2) → (2,2) → (2,3) → (3,3) → (3,4) → (3,5) → (4,5) → (5,5). Con flechas queda así: → ↓ → ↓ → → ↓ ↓. Las energías de esas casillas son 2, 7, 4, 9, 3, 7, 4, 8 y 6, y la suma total es 50. Sí es múltiplo de 5, porque 50 entre 5 da 10 exacto.
 4. Justificación. Sabemos que esta ruta es la de mayor suma porque, además de comprobar varias posibilidades con la calculadora, el método no deja ningún camino por fuera. A cada casilla solo se puede llegar desde arriba o desde la izquierda, y en ambos casos revisamos las opciones. Cuando dos caminos llegaban a la misma casilla con el mismo resto, descartar el de menor suma no hacía perder nada. De ahí en adelante, a los dos se les sumarían las mismas casillas, así que el de menor suma nunca podría terminar ganando. Además, 50 resultó ser la mayor suma posible entre todas las rutas de la cuadrícula, aun sin la condición. Por eso ninguna otra ruta puede superarla.
 5. Extensión matemática. Si la condición cambiara a "múltiplo de 3", la ruta óptima no sería la misma. La suma de 50 no es múltiplo de 3, así que esta ruta ya no cumpliría la condición. Al cambiar la condición, cambian las rutas que son válidas, y la mejor tiene que buscarse de nuevo con el mismo procedimiento, pero revisando el resto al dividir entre 3. Haciéndolo así, la mejor suma pasa a ser 48, con la ruta ↓ → ↓ → → → ↓ ↓.
+
+**Actividad 12/11**
+
+En esta actividad realizamos un circuito digital y lo recreamos en físico. 
+
+El circuito es el siguiente 
+<img width="1180" height="820" alt="IMG_3259" src="https://github.com/user-attachments/assets/e7abb8c5-0da7-4929-974c-698db7483017" />
+
