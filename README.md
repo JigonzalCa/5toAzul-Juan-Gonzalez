@@ -755,3 +755,77 @@ void loop() {
  digitalWrite(LED_VERDE, LOW);
  delay(500);
 }
+
+**Actividad 19/11**
+En esta actividad del 19/11, realize el trabajo junto a Max Gómez, Juan Pedro Rondón, Alejandro Vivas, y Juan Maizo. Esto ocurrió porque solo éramos 7 en el salón. 
+
+Para ver el circuito eléctrico que después lo replicamos es el siguiente, y se puede ver en el 
+siguiente link: https://www.tinkercad.com/things/kV3g5ERUySe/editel?returnTo=%2Fchallenges%2F92ocMLjbUa3-toad-ally-robotic-challenge&sharecode=TgMguRqOH_E0B3EiCcPdt4zcuxjenjKlFEzHxKq4lyg
+
+Y esta es la foto
+
+<img width="1733" height="1053" alt="IMG_3266" src="https://github.com/user-attachments/assets/bbfc5dd6-96f7-44d0-8ec7-45ad3bcdaba9" />
+
+El código es el siguiente: 
+
+#include <Servo.h>
+
+// ----- Pines -----
+const int PIN_BOTON    = 2;
+const int LED_AMARILLO = 7;
+const int LED_AZUL     = 6;
+const int LED_NARANJA  = 5;
+const int PIN_SERVO    = 9;
+
+Servo servo;
+
+int contador = 0;          // cuántas veces se ha presionado el botón
+int estadoAnterior = HIGH; // con INPUT_PULLUP: HIGH = suelto, LOW = presionado
+
+void setup() {
+ pinMode(PIN_BOTON, INPUT_PULLUP);   // resistencia interna del Arduino, el pulsador no lleva resistencia
+ pinMode(LED_AMARILLO, OUTPUT);
+ pinMode(LED_AZUL, OUTPUT);
+ pinMode(LED_NARANJA, OUTPUT);
+
+ servo.attach(PIN_SERVO);
+ servo.write(90);                    // posición inicial: centro
+
+ // Estado inicial: solo el amarillo encendido
+ digitalWrite(LED_AMARILLO, HIGH);
+ digitalWrite(LED_AZUL, LOW);
+ digitalWrite(LED_NARANJA, LOW);
+}
+
+void loop() {
+ int lectura = digitalRead(PIN_BOTON);
+
+ // Detecta solo el momento en que se presiona (flanco), no mientras se mantiene
+ if (estadoAnterior == HIGH && lectura == LOW) {
+   contador++;
+
+   if (contador == 1) {
+     // 1ra pulsación: amarillo OFF, azul ON, servo 90° antihorario (90 -> 180)
+     digitalWrite(LED_AMARILLO, LOW);
+     digitalWrite(LED_AZUL, HIGH);
+     servo.write(180);
+   }
+   else if (contador == 2) {
+     // 2da pulsación: servo 180° horario (180 -> 0), azul OFF, naranja ON
+     servo.write(0);
+     digitalWrite(LED_AZUL, LOW);
+     digitalWrite(LED_NARANJA, HIGH);
+   }
+   else if (contador == 3) {
+     // 3ra pulsación: vuelve al inicio (servo a 90°, solo amarillo) y reinicia el contador
+     servo.write(90);
+     digitalWrite(LED_NARANJA, LOW);
+     digitalWrite(LED_AMARILLO, HIGH);
+     contador = 0;
+   }
+
+   delay(50); // antirrebote
+ }
+
+ estadoAnterior = lectura;
+}
