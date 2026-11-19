@@ -707,3 +707,51 @@ En esta actividad realizamos un circuito digital y lo recreamos en físico.
 El circuito es el siguiente 
 <img width="1180" height="820" alt="IMG_3259" src="https://github.com/user-attachments/assets/e7abb8c5-0da7-4929-974c-698db7483017" />
 
+Para encontrarlo y probarlo puedes usar el siguiente link 
+https://www.tinkercad.com/things/k7LEkUQzPqg/editel?returnTo=%2Fdashboard&sharecode=Gssx0X0WuuahWP1rvrQNcATJDZkP0NBCe4vOhlheFLw
+
+El código es el siguiente 
+
+// Servomotor + LED rojo (antihorario) + LED verde (horario)
+// Para Tinkercad Circuits - Arduino Uno
+
+#include <Servo.h>
+
+Servo servo;
+
+const int PIN_SERVO = 9;   // Señal del servo
+const int LED_ROJO  = 7;   // LED rojo  -> giro antihorario
+const int LED_VERDE = 6;   // LED verde -> giro horario
+
+void setup() {
+ servo.attach(PIN_SERVO);
+ pinMode(LED_ROJO, OUTPUT);
+ pinMode(LED_VERDE, OUTPUT);
+ servo.write(0);          // Posición inicial
+ delay(500);
+}
+
+void loop() {
+ // ---- Giro ANTIHORARIO (0 -> 180 grados): enciende ROJO ----
+ digitalWrite(LED_ROJO, HIGH);
+ digitalWrite(LED_VERDE, LOW);
+ for (int angulo = 0; angulo <= 180; angulo++) {
+   servo.write(angulo);
+   delay(15);             // Velocidad del giro
+ }
+
+ // Pausa con ambos LEDs apagados
+ digitalWrite(LED_ROJO, LOW);
+ delay(500);
+
+ // ---- Giro HORARIO (180 -> 0 grados): enciende VERDE ----
+ digitalWrite(LED_VERDE, HIGH);
+ for (int angulo = 180; angulo >= 0; angulo--) {
+   servo.write(angulo);
+   delay(15);
+ }
+
+ // Pausa con ambos LEDs apagados
+ digitalWrite(LED_VERDE, LOW);
+ delay(500);
+}
